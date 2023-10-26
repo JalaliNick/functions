@@ -1,0 +1,169 @@
+------------------------------------------------    1111111111111111111111111111111     ------------------------------------------------
+
+განსაზღვრეთ int ცვლადი სახელწოდებით "age" და მოახდინეთ ინიციალიზაცია თქვენი ასაკის მიხედვით. განსაზღვრეთ string ცვლადი სახელად "name" და მოახდინეთ ინიციალიზაცია თქვენი სახელის მიხედვით
+
+using System;
+
+class Program
+{
+    // Task 1
+    static void Task1()
+    {
+        int age = 30; // Replace with your actual age
+        string name = "John"; // Replace with your actual name
+
+        for (int i = 1; i <= 10; i++)
+        {
+            Console.WriteLine($"My name is {name} and the current index is {i}");
+        }
+    }
+
+    // Task 2
+    class Person
+    {
+        private int age;
+        public string Name { get; set; }
+
+        public Person(int age, string name)
+        {
+            this.age = age;
+            Name = name;
+        }
+
+        public string Introduction()
+        {
+            return $"Hi, I'm {Name} and I'm {age} years old";
+        }
+    }
+
+    // Task 3
+    class Shape
+    {
+        protected double Area;
+
+        public Shape()
+        {
+            Area = 0;
+        }
+    }
+
+    class Rectangle : Shape
+    {
+        private double _length;
+        private double _width;
+
+        public double Length
+        {
+            get { return _length; }
+            set { _length = value; }
+        }
+
+        public double Width
+        {
+            get { return _width; }
+            set { _width = value; }
+        }
+
+        public void CalculateArea(double length, double width)
+        {
+            Area = length * width;
+        }
+    }
+
+    class Circle : Shape
+    {
+        private double _radius;
+
+        public double Radius
+        {
+            get { return _radius; }
+            set { _radius = value; }
+        }
+
+        public void CalculateArea(double radius)
+        {
+            Area = Math.PI * Math.Pow(radius, 2);
+        }
+    }
+
+    // Task 4
+    abstract class Vehicle
+    {
+        public abstract string StartEngine();
+    }
+
+    class Car : Vehicle
+    {
+        public override string StartEngine()
+        {
+            return "Car engine started";
+        }
+    }
+
+    class Bicycle : Vehicle
+    {
+        public override string StartEngine()
+        {
+            return "Pedaling the bicycle";
+        }
+    }
+
+    // Task 5
+    class MyList<T>
+    {
+        private System.Collections.Generic.List<T> list = new System.Collections.Generic.List<T>();
+
+        public void Add(T item)
+        {
+            list.Add(item);
+        }
+
+        public T Get(int index)
+        {
+            if (index >= 0 && index < list.Count)
+            {
+                return list[index];
+            }
+            return default; // Return a default value for the type if the index is out of range
+        }
+    }
+
+    static void Main()
+    {
+        // Call each task's method
+        Task1();
+
+        // Task 2
+        Person person = new Person(25, "Alice"); // Replace with your actual age and name
+        Console.WriteLine(person.Introduction());
+
+        // Task 3
+        Rectangle rectangle = new Rectangle();
+        rectangle.Length = 5.0;
+        rectangle.Width = 3.0;
+        rectangle.CalculateArea(rectangle.Length, rectangle.Width);
+        Console.WriteLine($"Rectangle Area: {rectangle.Area}");
+
+        Circle circle = new Circle();
+        circle.Radius = 2.5;
+        circle.CalculateArea(circle.Radius);
+        Console.WriteLine($"Circle Area: {circle.Area}");
+
+        // Task 4
+        Vehicle car = new Car();
+        Console.WriteLine(car.StartEngine());
+
+        Vehicle bicycle = new Bicycle();
+        Console.WriteLine(bicycle.StartEngine());
+
+        // Task 5
+        MyList<int> intList = new MyList<int>();
+        intList.Add(10);
+        intList.Add(20);
+        intList.Add(30);
+
+        int element = intList.Get(1);
+        Console.WriteLine(element);
+    }
+}
+

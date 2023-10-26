@@ -1,0 +1,178 @@
+------------------------------------------------- 2222222222222222 ------------------------------------------
+
+განსაზღვრეთ int ცვლადი სახელწოდებით "quantity" და მოახდინეთ ინიციალიზაცია (e.g., 7). განსაზღვრეთ string ცვლადი სახელად "itemName" და 
+
+
+using System;
+
+class Program
+{
+    // Task 1
+    static void Task1()
+    {
+        int quantity = 7;
+        string itemName = "Widget";
+
+        for (int i = 1; i <= 5; i++)
+        {
+            Console.WriteLine($"Product: {itemName}, Index: {i}");
+        }
+    }
+
+    // Task 2
+    class Employee
+    {
+        private int _employeeName;
+        public string Salary { get; set; }
+
+        public Employee(int employeeName, string salary)
+        {
+            _employeeName = employeeName;
+            Salary = salary;
+        }
+
+        public string DisplayInfo()
+        {
+            return $"Hi, I'm {_employeeName} and I earn {Salary} per year";
+        }
+    }
+
+    // Task 3
+    class Item
+    {
+        protected double Price;
+
+        public Item()
+        {
+            Price = 0;
+        }
+    }
+
+    class Fruit : Item
+    {
+        private double _weightInKg;
+        private double _priceOfOneKg;
+
+        public double WeightInKg
+        {
+            get { return _weightInKg; }
+            set { _weightInKg = value; }
+        }
+
+        public double PriceOfOneKg
+        {
+            get { return _priceOfOneKg; }
+            set { _priceOfOneKg = value; }
+        }
+
+        public double CalculateTotalPrice(double weight, double pricePerKg)
+        {
+            return weight * pricePerKg;
+        }
+    }
+
+    class Electronics : Item
+    {
+        private int _quantity;
+        private double _oneUnitPrice;
+
+        public int Quantity
+        {
+            get { return _quantity; }
+            set { _quantity = value; }
+        }
+
+        public double OneUnitPrice
+        {
+            get { return _oneUnitPrice; }
+            set { _oneUnitPrice = value; }
+        }
+
+        public double CalculateTotalPrice(int quantity, double unitPrice)
+        {
+            return quantity * unitPrice;
+        }
+    }
+
+    // Task 4
+    abstract class Bird
+    {
+        public abstract string MakeSound();
+    }
+
+    class Sparrow : Bird
+    {
+        public override string MakeSound()
+        {
+            return "Chirp";
+        }
+    }
+
+    class Pigeon : Bird
+    {
+        public override string MakeSound()
+        {
+            return "Coo";
+        }
+    }
+
+    // Task 5
+    class MyCollection<T>
+    {
+        private System.Collections.Generic.List<T> list = new System.Collections.Generic.List<T>();
+
+        public void AddItem(T item)
+        {
+            list.Add(item);
+        }
+
+        public T GetItem(int index)
+        {
+            if (index >= 0 && index < list.Count)
+            {
+                return list[index];
+            }
+            return default(T);
+        }
+    }
+
+    static void Main()
+    {
+        // Call each task's method
+        Task1();
+
+        // Task 2
+        Employee employee = new Employee(123, "$50,000"); // Replace with actual data
+        Console.WriteLine(employee.DisplayInfo());
+
+        // Task 3
+        Fruit fruit = new Fruit();
+        fruit.WeightInKg = 2.5;
+        fruit.PriceOfOneKg = 1.2;
+        double fruitTotalPrice = fruit.CalculateTotalPrice(fruit.WeightInKg, fruit.PriceOfOneKg);
+        Console.WriteLine($"Fruit Total Price: ${fruitTotalPrice}");
+
+        Electronics electronics = new Electronics();
+        electronics.Quantity = 5;
+        electronics.OneUnitPrice = 30.0;
+        double electronicsTotalPrice = electronics.CalculateTotalPrice(electronics.Quantity, electronics.OneUnitPrice);
+        Console.WriteLine($"Electronics Total Price: ${electronicsTotalPrice}");
+
+        // Task 4
+        Bird sparrow = new Sparrow();
+        Console.WriteLine($"Sparrow makes sound: {sparrow.MakeSound()}");
+        Bird pigeon = new Pigeon();
+        Console.WriteLine($"Pigeon makes sound: {pigeon.MakeSound()}");
+
+        // Task 5
+        MyCollection<string> stringCollection = new MyCollection<string>();
+        stringCollection.AddItem("Item 1");
+        stringCollection.AddItem("Item 2");
+        stringCollection.AddItem("Item 3");
+
+        string item = stringCollection.GetItem(1);
+        Console.WriteLine($"Item at index 1: {item}");
+    }
+}
+
+

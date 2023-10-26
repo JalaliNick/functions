@@ -1,0 +1,164 @@
+using System;
+
+class Program
+{
+    // Task 1
+    static void Task1()
+    {
+        int temperature = 22; // Replace with your actual temperature in Celsius
+        string city = "YourCity"; // Replace with the name of your city
+
+        for (int i = 1; i <= 7; i++)
+        {
+            double fahrenheit = (temperature * 9.0 / 5.0) + 32;
+            Console.WriteLine($"In {city}, Day {i}: {fahrenheit}°F");
+        }
+    }
+
+    // Task 2
+    class Student
+    {
+        private int _studentName;
+        public string Grade { get; set; }
+
+        public Student(int studentName, string grade)
+        {
+            _studentName = studentName;
+            Grade = grade;
+        }
+
+        public string Greeting()
+        {
+            return $"Hi, I'm {_studentName} and I'm in grade {Grade}";
+        }
+    }
+
+    // Task 3
+    class Figure
+    {
+        protected double Area;
+
+        public Figure()
+        {
+            Area = 0;
+        }
+    }
+
+    class Triangle : Figure
+    {
+        private double _base;
+        private double _height;
+
+        public double Base
+        {
+            get { return _base; }
+            set { _base = value; }
+        }
+
+        public double Height
+        {
+            get { return _height; }
+            set { _height = value; }
+        }
+
+        public void CalculateArea(double triangleBase, double height)
+        {
+            Area = (triangleBase * height) / 2;
+        }
+    }
+
+    class Square : Figure
+    {
+        private double _sideLength;
+
+        public double SideLength
+        {
+            get { return _sideLength; }
+            set { _sideLength = value; }
+        }
+
+        public void CalculateArea(double sideLength)
+        {
+            Area = sideLength * sideLength;
+        }
+    }
+
+    // Task 4
+    abstract class Animal
+    {
+        public abstract string MakeSound();
+    }
+
+    class Dog : Animal
+    {
+        public override string MakeSound()
+        {
+            return "Woof";
+        }
+    }
+
+    class Cat : Animal
+    {
+        public override string MakeSound()
+        {
+            return "Meow";
+        }
+    }
+
+    // Task 5
+    class MyCollection<T>
+    {
+        private System.Collections.Generic.List<T> list = new System.Collections.Generic.List<T>();
+
+        public void AddItem(T item)
+        {
+            list.Add(item);
+        }
+
+        public T GetItem(int index)
+        {
+            if (index >= 0 && index < list.Count)
+            {
+                return list[index];
+            }
+            return default(T);
+        }
+    }
+
+    static void Main()
+    {
+        // Call each task's method
+        Task1();
+
+        // Task 2
+        Student student = new Student(1, "A"); // Replace with actual data
+        Console.WriteLine(student.Greeting());
+
+        // Task 3
+        Triangle triangle = new Triangle();
+        triangle.Base = 5.0;
+        triangle.Height = 3.0;
+        triangle.CalculateArea(triangle.Base, triangle.Height);
+        Console.WriteLine($"Triangle Area: {triangle.CalculateArea}");
+
+        Square square = new Square();
+        square.SideLength = 4.0;
+        square.CalculateArea(square.SideLength);
+        Console.WriteLine($"Square Area: {square.CalculateArea}");
+
+        // Task 4
+        Animal dog = new Dog();
+        Console.WriteLine($"Dog makes sound: {dog.MakeSound()}");
+        Animal cat = new Cat();
+        Console.WriteLine($"Cat makes sound: {cat.MakeSound()}");
+
+        // Task 5
+        MyCollection<string> stringCollection = new MyCollection<string>();
+        stringCollection.AddItem("Item 1");
+        stringCollection.AddItem("Item 2");
+        stringCollection.AddItem("Item 3");
+
+        string item = stringCollection.GetItem(1);
+        Console.WriteLine($"Item at index 1: {item}");
+    }
+}
