@@ -1,6 +1,4 @@
 
- //int  "age" 
-
 using System;
 
 class Program
@@ -38,32 +36,47 @@ class Program
     // Task 3
     class Shape
     {
-        protected double Area;
+        protected double area;
 
-        public Shape()
+        public double Area
         {
-            Area = 0;
+            get { return area; }
+            protected set { area = value; }
         }
     }
 
     class Rectangle : Shape
     {
-        private double _length;
-        private double _width;
+        private double length;
+        private double width;
 
         public double Length
         {
-            get { return _length; }
-            set { _length = value; }
+            get { return length; }
+            set
+            {
+                length = value;
+                CalculateArea();
+            }
         }
 
         public double Width
         {
-            get { return _width; }
-            set { _width = value; }
+            get { return width; }
+            set
+            {
+                width = value;
+                CalculateArea();
+            }
         }
 
-        public void CalculateArea(double length, double width)
+        public Rectangle(double length, double width)
+        {
+            Length = length;
+            Width = width;
+        }
+
+        private void CalculateArea()
         {
             Area = length * width;
         }
@@ -71,15 +84,24 @@ class Program
 
     class Circle : Shape
     {
-        private double _radius;
+        private double radius;
 
         public double Radius
         {
-            get { return _radius; }
-            set { _radius = value; }
+            get { return radius; }
+            set
+            {
+                radius = value;
+                CalculateArea();
+            }
         }
 
-        public void CalculateArea(double radius)
+        public Circle(double radius)
+        {
+            Radius = radius;
+        }
+
+        private void CalculateArea()
         {
             Area = Math.PI * Math.Pow(radius, 2);
         }
@@ -137,16 +159,13 @@ class Program
         Console.WriteLine(person.Introduction());
 
         // Task 3
-        Rectangle rectangle = new Rectangle();
-        rectangle.Length = 5.0;
-        rectangle.Width = 3.0;
-        rectangle.CalculateArea(rectangle.Length, rectangle.Width);
-        Console.WriteLine($"Rectangle Area: {rectangle.Area}");
+  
+            Rectangle rectangle = new Rectangle(5.0, 3.0);
+            Console.WriteLine($"Area of the rectangle: {rectangle.Area}");
 
-        Circle circle = new Circle();
-        circle.Radius = 2.5;
-        circle.CalculateArea(circle.Radius);
-        Console.WriteLine($"Circle Area: {circle.Area}");
+            Circle circle = new Circle(4.0);
+            Console.WriteLine($"Area of the circle: {circle.Area}");
+     
 
         // Task 4
         Vehicle car = new Car();
